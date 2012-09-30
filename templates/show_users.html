@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block body %}
+    <h2>User List</h2>
+    <table>
+        <tr><td><strong>Name:</strong></td><td><strong>First Name:</strong></td><td><strong>Last Name:</strong></td><td><strong>Password:</strong></td></tr>
+            <tr>
+        {% for x in user_entries_length %}          
+                <td>{{user_list[0][x]}}</td>
+                <td>{{user_list[1][x]}}</td>
+                <td>{{user_list[2][x]}}</td>
+                <td>{{user_list[3][x]}}</td>
+            </tr>    
+        {% endfor %}
+    </table>    
+{% endblock %}
+{% block nav %}
+<li><a href="{{url_for('login')}}">back</a></li>
+{% endblock %}

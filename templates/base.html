@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Awesome Site Beta</title>
+        <link rel="stylesheet" type="text/css" href="/static/style.css" />
+	<script type="text/javascript" src="/static/jquery-1.8.2.min.js" ></script>
+    </head>
+    <body>
+	<div class="page">
+	    <div class="header">
+		{% if 'username' in session %}
+		currently logged in as {{session['username']}} | <a href="{{url_for('login')}}">Logout</a> <a href="{{url_for('account_settings')}}">(account settings)</a>
+		{% else %}
+		you are currently logged out
+		{% endif %}
+	    </div>
+            <div class="nav">
+                Navigation:<br />
+                <ul>
+                    {% block nav %}{% endblock %}
+		    <li><a href="{{url_for('main')}}">index</a></li>
+		    <li><a href="/about/">about</a></li>
+		    <li><a href="/contact/">contact</a></li>
+		    <hr>
+		    {% if 'username' in session %}
+                        <li><a href="{{url_for('remote')}}">remote control</a></li>		    
+		        <li><a href="{{url_for('music')}}">music</a></li>
+			<li><a href="{{url_for('show_users')}}">user list</a></li>
+		    {% else %}
+		        <li><a href="{{url_for('login')}}">login</a></li>
+			<li><a href="{{url_for('register')}}">register</a></li>
+		    {% endif %}
+                </ul>
+            </div>
+	    <div class="content">
+                {% block body %}{% endblock %}
+		{% with messages = get_flashed_messages() %}
+        	    {% for message in messages %}
+            		<div class="flash">{{message}}</div>
+        	    {% endfor %}
+    		{% endwith %}
+            </div>	
+            <div class="clear"></div>
+	</div>
+    </body>
+</html>

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block body %}
+    <h1>Account Settings</h1>
+    <table>
+            <tr>
+                <td>Username:</td>
+                <td>{{ user_info[0] }}</td>
+            </tr>
+            <tr>
+                <td>First Name:</td>
+                <td>{{ user_info[1] }}</td>
+            </tr>
+            <tr>
+                <td>Last Name:</td>
+                <td>{{ user_info[2] }}</td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><a href = '{{url_for('change_password')}}'>change password</a></td>
+            </tr>
+        </table>
+{% endblock %}
